@@ -1,7 +1,7 @@
-countryCodes = list("IND", "CUB", "IDN", "IRQ", "POL", "UKR")
+countryCodes = list("AUS", "CUB", "IND", "FRA", "ZAF", "USA")
 
 for(countryCode in countryCodes) {
-  subDirectory <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code/FDA_J_COMP/LinearRegression/",countryCode)
+  subDirectory <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code/FDA_J_COMP/LinearRegression/Plots/",countryCode)
   path <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code/FDA_J_COMP/countries/", countryCode, ".csv", sep ="")
   countryData <- read.csv(path)
   countryVaccinations <- countryData$total_vaccinations
@@ -20,6 +20,7 @@ for(countryCode in countryCodes) {
   
   mod <- lm(countryDeaths ~ countryCases)
   
+  cat("Summary of Linear Regression Model for the case - Deaths v/s Total Cases")
   summary(mod)
   png(file = paste(subDirectory,"_Deaths_Cases.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
   plot(countryCases, countryDeaths, main=paste("Deaths v/s Cases in", countryCode, sep=" "), xlab = "Total Cases", ylab = "Total Deaths")
@@ -31,6 +32,7 @@ for(countryCode in countryCodes) {
   
   mod1 <- lm(countryVaccinations ~ countryDeaths)
   
+  cat("Summary of Linear Regression Model for the case - Vaccinations v/s Total Deaths")
   summary(mod1)
   
   png(file = paste(subDirectory,"_Vaccinations_Deaths.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
@@ -43,6 +45,7 @@ for(countryCode in countryCodes) {
   
   mod2 <- lm(countryTests ~ countryCases)
   
+  cat("Summary of Linear Regression Model for the case - Tests v/s Cases")
   summary(mod2)
   
   png(file = paste(subDirectory,"_Tests_Cases.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
@@ -55,6 +58,7 @@ for(countryCode in countryCodes) {
   
   mod3 <- lm(countryDeaths ~ days)
   
+  cat("Summary of Linear Regression Model for the case - Deaths v/s Time")
   summary(mod3)
   
   png(file = paste(subDirectory,"_Deaths_Days.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
@@ -69,6 +73,7 @@ for(countryCode in countryCodes) {
   
   mod4 <- lm(countryStringencyIndex ~ countryCases)
   
+  cat("Summary of Linear Regression Model for the case - Stringency Index v/s Cases")
   summary(mod4)
 
   png(file = paste(subDirectory,"_StringencyIndex_Cases.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
