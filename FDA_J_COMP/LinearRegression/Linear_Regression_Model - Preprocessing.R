@@ -57,6 +57,7 @@ for(countryCode in countryCodes) {
   
   # countryDeaths <- tmpDF[,1]
   
+  mod <- lm(countryDeaths ~ countryCases)
   
   cat("Summary of Linear Regression Model for the case - Deaths v/s Total Cases")
   summary(mod)
@@ -81,6 +82,8 @@ for(countryCode in countryCodes) {
       countryVaccinations[index] = tmpDF[index, 1]
     }
   }
+  
+  mod1 <- lm(countryVaccinations ~ countryDeaths)
   
   cat("Summary of Linear Regression Model for the case - Vaccinations v/s Total Deaths")
   summary(mod1)
@@ -107,6 +110,8 @@ for(countryCode in countryCodes) {
     }
   }
   
+  mod2 <- lm(countryTests ~ countryCases)
+  
   cat("Summary of Linear Regression Model for the case - Tests v/s Cases")
   summary(mod2)
   
@@ -131,6 +136,8 @@ for(countryCode in countryCodes) {
       countryDeaths[index] = tmpDF[index, 1]
     }
   }
+  
+  mod3 <- lm(countryDeaths ~ days)
   
   cat("Summary of Linear Regression Model for the case - Deaths v/s Time")
   summary(mod3)
@@ -158,6 +165,8 @@ for(countryCode in countryCodes) {
       countryStringencyIndex[index] = tmpDF[index, 1]
     }
   }
+  
+  mod4 <- lm(countryStringencyIndex ~ countryCases)
   
   cat("Summary of Linear Regression Model for the case - Stringency Index v/s Cases")
   summary(mod4)
