@@ -1,7 +1,7 @@
 countryCodes = list("AUS", "CUB", "IND", "FRA", "ZAF", "USA")
 
 for(countryCode in countryCodes) {
-  subDirectory <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code/FDA_J_COMP/LinearRegression/Plots/",countryCode)
+  subDirectory <- paste("./Plots/",countryCode)
   path <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code/FDA_J_COMP/countries/", countryCode, ".csv", sep ="")
   countryData <- read.csv(path)
   countryVaccinations <- countryData$total_vaccinations
@@ -22,6 +22,13 @@ for(countryCode in countryCodes) {
   
   cat("Summary of Linear Regression Model for the case - Deaths v/s Total Cases")
   summary(mod)
+  
+  matrix_coef <- summary(mod)$coefficients  # Extract coefficients in matrix
+  matrix_coef 
+  
+  my_estimates <- matrix_coef[ , 1]                     # Matrix manipulation to extract estimates
+  my_estimates
+  
   png(file = paste(subDirectory,"_Deaths_Cases.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
   plot(countryCases, countryDeaths, main=paste("Deaths v/s Cases in", countryCode, sep=" "), xlab = "Total Cases", ylab = "Total Deaths")
   
@@ -34,6 +41,12 @@ for(countryCode in countryCodes) {
   
   cat("Summary of Linear Regression Model for the case - Vaccinations v/s Total Deaths")
   summary(mod1)
+  
+  matrix_coef <- summary(mod1)$coefficients  # Extract coefficients in matrix
+  matrix_coef 
+  
+  my_estimates <- matrix_coef[ , 1]                     # Matrix manipulation to extract estimates
+  my_estimates
   
   png(file = paste(subDirectory,"_Vaccinations_Deaths.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
   plot(countryDeaths, countryVaccinations, main=paste("Vaccinations v/s Deaths in", countryCode, sep=" "), xlab = "Total Deaths", ylab = "Total Vaccinations")
@@ -48,6 +61,12 @@ for(countryCode in countryCodes) {
   cat("Summary of Linear Regression Model for the case - Tests v/s Cases")
   summary(mod2)
   
+  matrix_coef <- summary(mod2)$coefficients  # Extract coefficients in matrix
+  matrix_coef 
+  
+  my_estimates <- matrix_coef[ , 1]                     # Matrix manipulation to extract estimates
+  my_estimates
+  
   png(file = paste(subDirectory,"_Tests_Cases.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
   plot(countryCases, countryTests, main=paste("Tests v/s Cases in", countryCode, sep=" "), xlab = "Total Cases", ylab = "Total Tests")
   
@@ -61,6 +80,12 @@ for(countryCode in countryCodes) {
   cat("Summary of Linear Regression Model for the case - Deaths v/s Time")
   summary(mod3)
   
+  matrix_coef <- summary(mod3)$coefficients  # Extract coefficients in matrix
+  matrix_coef 
+  
+  my_estimates <- matrix_coef[ , 1]                     # Matrix manipulation to extract estimates
+  my_estimates
+  
   png(file = paste(subDirectory,"_Deaths_Days.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
   plot(days, countryDeaths, main=paste("Deaths v/s Days in", countryCode, sep=" "), xlab = "Days", ylab = "Total Deaths")
   
@@ -69,13 +94,17 @@ for(countryCode in countryCodes) {
   
   # Stringency Index v/s Cases 
   
-  countryData$total_cases[is.na(countryData$total_cases)] = 0
-  
   mod4 <- lm(countryStringencyIndex ~ countryCases)
   
   cat("Summary of Linear Regression Model for the case - Stringency Index v/s Cases")
   summary(mod4)
 
+  matrix_coef <- summary(mod4)$coefficients  # Extract coefficients in matrix
+  matrix_coef 
+  
+  my_estimates <- matrix_coef[ , 1]                     # Matrix manipulation to extract estimates
+  my_estimates
+  
   png(file = paste(subDirectory,"_StringencyIndex_Cases.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
   plot(countryCases, countryStringencyIndex, type="l", lwd="2", main=paste("Stringency Index v/s Cases in", countryCode, sep=" "), xlab = "Total Cases", ylab = "Stringency Index")
   
