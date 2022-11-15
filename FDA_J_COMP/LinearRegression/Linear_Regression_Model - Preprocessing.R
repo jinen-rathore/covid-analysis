@@ -128,6 +128,22 @@ for(countryCode in countryCodes) {
   
   mod1 <- lm(countryVaccinations ~ countryDeaths)
   
+  #alternative approach to imputing the missing data using the linear regression model
+  
+  # tmpDF <- data.frame(countryVaccinations, countryDeaths)
+  # 
+  # tmpDF <- predict(mod1, tmpDF)
+  # 
+  # tmpDF <- as.data.frame(tmpDF)
+  # 
+  # for(index in 1:length(countryVaccinations)) {
+  #   if(is.na(countryVaccinations[index])) {
+  #     countryVaccinations[index] = tmpDF[index, 1]
+  #   }
+  # }
+  # 
+  # mod1 <- lm(countryVaccinations ~ countryDeaths)
+  
   cat("Summary of Linear Regression Model for the case - Vaccinations v/s Total Deaths")
   summary(mod1)
   
