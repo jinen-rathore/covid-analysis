@@ -10,86 +10,58 @@ for ( nam in countris)
   filename <- paste("/Users/vinaymoolya/Desktop/semester5/FDA/Jcomp/FDA_J_COMP/countries/",nam,".csv",sep="");
   dataset <- read.csv(filename, stringsAsFactors = T)
   dataset <- as.data.frame(dataset)
-  #clean the total_cases collumn
-  cc<-0;
-  itr <-1
-  while(is.null(dataset$total_cases[itr]))
-  {
-    cc<-cc+1;
-    itr->itr+1;
-  }
-  for (i in 1:cc) {
-    if (is.null(dataset$total_cases[i])) dataset$total_cases[i] = 0
-  }
-  for (i in cc:(length(dataset$total_cases) - 25)) {
-    if (is.null(dataset$total_cases[i])) {
-      val = (mean(na.omit(dataset$total_cases[(i-25):(i-1)])) + mean(na.omit(dataset$total_cases[(i+1):(i+25)]))) / 2
-      dataset$total_cases[i] = val
-    }
-  }
-  
-  #clean the total_deaths collumn
-  dc<-0;
-  itr <-1
-  while(is.null(dataset$total_deaths[itr]))
-  {
-    dc<-dc+1;
-    itr->itr+1;
-  }
-  for (i in 1:dc) {
-    if (is.null(dataset$total_deaths[i])) dataset$total_deaths[i] = 0
-  }
-  for (i in dc:(length(dataset$total_deaths) - 25)) {
-    if (is.null(dataset$total_deaths[i])) {
-      val = (mean(na.omit(dataset$total_deaths[(i-25):(i-1)])) + mean(na.omit(dataset$total_deaths[(i+1):(i+25)]))) / 2
-      dataset$total_deaths[i] = val
-    }
-  }
-  
-  #clean the total_tests_ collumn
-  itr <-1
-  tc<-0
-  while(is.null(dataset$total_tests[itr]))
-  {
-    tc<-tc+1;
-    itr->itr+1;
-  }
-  for (i in 1:tc) {
-    if (is.null(dataset$total_tests[i])) dataset$total_tests[i] = 0
-  }
-  for (i in tc:(length(dataset$total_tests) - 25)) {
-    if (is.null(dataset$total_tests[i])) {
-      val = (mean(na.omit(dataset$total_tests[(i-25):(i-1)])) + mean(na.omit(dataset$total_tests[(i+1):(i+25)]))) / 2
-      dataset$total_tests[i] = val
-    }
-  }
-  
-  #clean the total vaccinations collumn
-  itr <-1
-  vc<-0
-  while(is.null(dataset$total_vaccinations[itr]))
-  {
-    vc<-vc+1;
-    itr->itr+1;
-  }
-  for (i in 1:vc) {
-    if (is.null(dataset$total_vaccinations[i])) 
-      {
-      dataset$total_vaccinations[i] = 0
-    }
-  }
-  for (i in vc:(length(dataset$total_vaccinations) - 25)) {
-    if (is.null(dataset$total_vaccinations[i])) {
-      val = (mean(na.omit(dataset$total_vaccinations[(i-25):(i-1)])) + mean(na.omit(dataset$total_vaccinations[(i+1):(i+25)]))) / 2
-      dataset$total_vaccinations[i] = val
-    }
-  }
-  
   
   countryCases <- dataset$total_cases
   countryVaccinations <- dataset$total_vaccinations
   countryTests <- dataset$total_tests
   countryDeaths <- dataset$total_deaths
+  #clean the total_cases collumn
+
+  for (i in 25:(length(countryCases) - 25)) {
+    if (is.na(countryCases[i])) {
+      val = (mean(na.omit(countryCases[(i-25):(i-1)])) + mean(na.omit(countryCases[(i+1):(i+25)]))) / 2
+      countryCases[i] = val
+    }
+  }
+  
+  #clean the total_deaths collumn
+
+  for (i in 1:25) {
+    if (is.na(countryDeaths[i])) countryDeaths[i] = 0
+  }
+  for (i in 25:(length(countryDeaths) - 25)) {
+    if (is.na(countryDeaths[i])) {
+      val = (mean(na.omit(countryDeaths[(i-25):(i-1)])) + mean(na.omit(countryDeaths[(i+1):(i+25)]))) / 2
+      countryDeaths[i] = val
+    }
+  }
+  
+  #clean the total_tests_ collumn
+
+  for (i in 1:25) {
+    if (is.na(countryTests[i])) countryTests[i] = 0
+  }
+  for (i in 25:(length(countryTests))) {
+    if (is.na(countryTests[i])) {
+      val = (mean(na.omit(countryTests[(i-25):(i-1)]))+ mean(na.omit(countryTests[(i+1):(i+25)]))) / 2
+      countryTests[i] = val
+    }
+  }
+  
+  #clean the total vaccinations collumn
+
+  for (i in 1:25) {
+    if (is.na(countryVaccinations[i])) 
+      {
+      countryVaccinations[i] = 0
+    }
+  }
+  for (i in 25:(length(countryVaccinations))) {
+    if (is.na(countryVaccinations[i])) {
+      val = (mean(na.omit(countryVaccinations[(i-25):(i-1)]))+ mean(na.omit(countryVaccinations[(i+1):(i+25)]))) / 2
+      countryVaccinations[i] = val
+    }
+  }
   
   cat("For the Country :: ",nam,"\n");
   # Cases Vs ( Tests + Vaccinations )
