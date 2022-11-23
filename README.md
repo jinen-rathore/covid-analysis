@@ -46,3 +46,19 @@ COVID-19 so that it can be studied and researched to prevent future outbreaks.
 - Multiple Regression
 - Support Vector Regression (SVR)
 - Autoregressive Integrated Moving Average (ARIMA)
+
+# Conclusion
+The COVID-19 has caused respiratory ailments in humans and created long term damage in many
+cases too. Apart from this, there have been several cases of deaths around the world. In this paper,
+4 statistical modelling approaches (linear regression,Multiple Regression, Support Vector
+Regression and ARIMA) were explored. It is aimed at providing a comparative analysis taking into
+consideration the dataset from Our World in Data of 6 countries Australia(AUS), Cuba(CUB),
+India(IND), France(FRA), South Africa(ZAF) and the United States of America(USA), to provide
+optimum test cases and validation across multiple trend patterns focused at 2 forecasting events
+namely, cases forecasting and deaths forecasting. With respect to the results obtained, out of the
+statistical approaches taken, ARIMA outperformed linear regression and Support Vector Regression
+in terms of accuracy prediction of test data.
+The future scope of this project is enormous as we can even predict the cases of different
+pandemics and epidemics well in advance by applying these models which will help the government
+and other organisations to take necessary yet critical decisions very easily, making us more
+prepared for any kind of pandemic in the future.
