@@ -47,6 +47,34 @@ COVID-19 so that it can be studied and researched to prevent future outbreaks.
 - Support Vector Regression (SVR)
 - Autoregressive Integrated Moving Average (ARIMA)
 
+# Plots generated
+## Linear Regression
+![image](https://user-images.githubusercontent.com/71393551/203570965-b9fab6bf-fd51-4b04-acc7-b4fc25a961a4.png)
+![image](https://user-images.githubusercontent.com/71393551/203571010-c73643d3-36fa-4a92-a74a-ffba8e43620f.png)
+![image](https://user-images.githubusercontent.com/71393551/203571105-ab25cd78-3884-48de-b1d1-c2a10590ab03.png)
+
+## Multiple Regression
+![image](https://user-images.githubusercontent.com/71393551/203571167-f30345e0-7fa5-4ee8-b9a2-31c58de06c62.png)
+![image](https://user-images.githubusercontent.com/71393551/203571190-886ab8c8-a663-4eaf-939c-8d74ad3d6e18.png)
+![image](https://user-images.githubusercontent.com/71393551/203571220-d726cded-5367-47a5-95e1-88f451cfe802.png)
+
+## Support Vector Regression
+![image](https://user-images.githubusercontent.com/71393551/203571308-48cd6e90-a6b8-4405-992f-1abbab272cb1.png)
+![image](https://user-images.githubusercontent.com/71393551/203571337-7762007b-92af-42d1-94d6-f5b74999256d.png)
+![image](https://user-images.githubusercontent.com/71393551/203571361-74a3b9a0-f498-4d49-ad22-aabd4e652ed1.png)
+![image](https://user-images.githubusercontent.com/71393551/203571413-7be5b768-ccf4-4ec6-8580-70c8f3ce1704.png)
+![image](https://user-images.githubusercontent.com/71393551/203571447-26fa7b41-1290-49b4-a377-559608ae5a7e.png)
+
+## ARIMA
+![image](https://user-images.githubusercontent.com/71393551/203571517-e60653c9-69b1-4c69-a341-86afbd455272.png)
+![image](https://user-images.githubusercontent.com/71393551/203571559-dd6efdac-e2e6-436c-b8ed-49db8eb26d5c.png)
+![image](https://user-images.githubusercontent.com/71393551/203571584-1c3f8667-fdba-4ea9-8352-ae2427ab1baa.png)
+![image](https://user-images.githubusercontent.com/71393551/203571613-63aedbf9-efdb-43da-8f73-8cf1066c3a58.png)
+![image](https://user-images.githubusercontent.com/71393551/203571635-2bcaa01c-4213-43fe-854e-ccd21f1b3cf1.png)
+![image](https://user-images.githubusercontent.com/71393551/203571696-fe284111-344b-4616-b71e-30faa5b2bb03.png)
+![image](https://user-images.githubusercontent.com/71393551/203571730-bf10d7e4-67fc-48c7-953d-1e61d85030de.png)
+
+
 # Conclusion
 The COVID-19 has caused respiratory ailments in humans and created long term damage in many
 cases too. Apart from this, there have been several cases of deaths around the world. In this paper,
@@ -58,6 +86,7 @@ optimum test cases and validation across multiple trend patterns focused at 2 fo
 namely, cases forecasting and deaths forecasting. With respect to the results obtained, out of the
 statistical approaches taken, ARIMA outperformed linear regression and Support Vector Regression
 in terms of accuracy prediction of test data.
+    
 The future scope of this project is enormous as we can even predict the cases of different
 pandemics and epidemics well in advance by applying these models which will help the government
 and other organisations to take necessary yet critical decisions very easily, making us more
