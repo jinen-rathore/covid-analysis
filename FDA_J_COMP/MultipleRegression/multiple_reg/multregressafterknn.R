@@ -1,8 +1,12 @@
 #data cleaning strategies
 
 # we will be applying the KNN algorithm
-
-countris <- c("IND","CUB","IDN","IRQ","POL","UKR")
+library(car)
+library(caret)
+library(e1071)
+library(hydroGOF)
+library(dplyr)
+countris <- c("IND","USA")
 
 for ( nam in countris)
 { 
@@ -59,31 +63,33 @@ for ( nam in countris)
       countryVaccinations[i] = val
     }
   }
-  
   cat("For the Country :: ",nam,"\n");
   # Cases Vs ( Tests + Vaccinations )
   cat("Relation b/n Cases & ( tests , vaccinations )\n");
-  library(car)
-  mod <- lm(countryCases ~ countryTests + countryVaccinations , data = dataset)
-  
+  mod <- lm(total_cases ~ total_tests + total_vaccinations , data = dataset)
   print(mod)
-  
-  ofile1 <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code - github/FDA_J_COMP/MultipleRegression/multiple_reg/multiple_reg_after_impute/Cases/",nam,".jpeg",sep="")
+  dataset<-mutate(dataset, pred_cases = mod$coefficients[1]+total_tests*mod$coefficients[2]+total_vaccinations*mod$coefficients[3])
+  cat("RMSE :: ",rmse(dataset$pred_cases,dataset$total_cases,na.rm=T),"\n")
+  cat("MSE :: ",mse(dataset$pred_cases,dataset$total_cases,na.rm = T),"\n")
+  cat("MAE :: ",mae(dataset$pred_cases,dataset$total_cases,na.rm=T),"\n")
+  cat("R^2 :: ",R2(dataset$pred_cases,dataset$total_cases ,na.rm=T),"\n")
+  ofile1 <- paste("/Users/vinaymoolya/Desktop/semester5/FDA/Jcomp/FDA_J_COMP/visualization/multiple_reg_paper/Cases/",nam,".jpeg",sep="")
   jpeg(file = ofile1 ,width=600,height=400)
   avPlots(mod)
   dev.off()
   
   # Deaths Vs ( Cases + Vaccinations )
   cat("Relation b/n Deaths & ( Cases , vaccinations )\n");
-  mod <- lm(countryDeaths ~ countryCases + countryVaccinations, data = dataset)
-  
+  mod <- lm(total_deaths ~ total_cases + total_vaccinations, data = dataset)
   print(mod)
-  
-  ofile2 <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code - github/FDA_J_COMP/MultipleRegression/multiple_reg/multiple_reg_after_impute/Deaths/",nam,".jpeg",sep="")
+  dataset<-mutate(dataset, pred_deaths = mod$coefficients[1]+total_cases*mod$coefficients[2]+total_vaccinations*mod$coefficients[3])
+  cat("RMSE :: ",rmse(dataset$pred_deaths,dataset$total_deaths,na.rm=T),"\n")
+  cat("MSE :: ",mse(dataset$pred_deaths,dataset$total_deaths,na.rm = T),"\n")
+  cat("MAE :: ",mae(dataset$pred_deaths,dataset$total_deaths,na.rm=T),"\n")
+  cat("R^2 :: ",R2(dataset$pred_deaths,dataset$total_deaths ,na.rm=T),"\n")
+  ofile2 <- paste("/Users/vinaymoolya/Desktop/semester5/FDA/Jcomp/FDA_J_COMP/visualization/multiple_reg_paper/Deaths/",nam,".jpeg",sep="")
   jpeg(file = ofile2 ,width=600,height=400)
-  
   avPlots(mod)
-  
   dev.off()
   
 }
