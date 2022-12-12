@@ -1,8 +1,8 @@
-countryCodes = list("AUS", "CUB", "IND", "FRA", "ZAF", "USA")
-
-for(countryCode in countryCodes) {
-  subDirectory <- paste("./PreProcessedPlots/",countryCode)
-  path <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code/FDA_J_COMP/countries/", countryCode, ".csv", sep ="")
+# countryCodes = list("AUS", "CUB", "IND", "FRA", "ZAF", "USA")
+# 
+# for(countryCode in countryCodes) {
+  subDirectory <- paste("./PaperPlots/", "USA")
+  path <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code/FDA_J_COMP/countries/", "USA", ".csv", sep ="")
   countryData <- read.csv(path)
   
   # imputing NA values using kNN approach
@@ -39,6 +39,7 @@ for(countryCode in countryCodes) {
       countryVaccinations[i] = val
     }
   }
+
   
   countryDeaths <- countryData$total_deaths
   
@@ -178,24 +179,6 @@ for(countryCode in countryCodes) {
   abline(mod2, col=2, lwd = 3)
   dev.off()
   
-  # Deaths v/s Timeline
-  
-  mod3 <- lm(countryDeaths ~ days)
-  
-  cat("Summary of Linear Regression Model for the case - Deaths v/s Time")
-  summary(mod3)
-  
-  matrix_coef <- summary(mod3)$coefficients  # Extract coefficients in matrix
-  matrix_coef 
-  
-  my_estimates <- matrix_coef[ , 1]                     # Matrix manipulation to extract estimates
-  my_estimates
-  
-  png(file = paste(subDirectory,"_Deaths_Days_PP.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
-  plot(days, countryDeaths, type="l", lwd=3.0, main=paste("Deaths v/s Days in", countryCode, "after Preprocessing", sep=" "), xlab = "Days", ylab = "Total Deaths")
-  
-  abline(mod3, col=2, lwd = 3)
-  dev.off()
   
   # Stringency Index v/s Cases 
   
@@ -217,4 +200,93 @@ for(countryCode in countryCodes) {
   
   abline(mod4, col=2, lwd = 3)
   dev.off()
-}
+  
+  
+  # # Total Vaccinations v/s Total Cases
+  # 
+  # mod5 <- lm(countryVaccinations ~ countryCases)
+  # 
+  # # error analysis
+  # library(zoo)
+  # library(hydroGOF)
+  # 
+  # length(countryVaccinations)
+  # length(predict(mod5))
+  # 
+  # gof(predict(mod5), countryVaccinations)
+  
+  
+  
+  # Paper Plots
+  
+  # New Cases v/s Days
+  
+  mod6 <- lm(countryNewCases ~ days)
+  
+  # error analysis
+  print("Error Analysis for newCases vs Days - USA")
+  library(zoo)
+  library(hydroGOF)
+  
+  predict(mod6)
+  countryNewCases
+  
+  gof(predict(mod6), countryNewCases)
+  
+  png(file = paste(subDirectory,"_NewCases_Days.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
+  plot(days, countryNewCases, type="l", lwd=3.0, main=paste("New Cases v/s Days in", "USA", sep=" "), xlab = "Days", ylab = "New Cases")
+  
+  abline(mod6, col=2, lwd = 3)
+  dev.off()
+  
+  
+  # Deaths v/s Timeline
+  
+  mod3 <- lm(countryDeaths ~ days)
+  
+  # error analysis
+  print("Error Analysis for total deaths vs Days - IND")
+  library(zoo)
+  library(hydroGOF)
+  
+  predict(mod3)
+  
+  gof(predict(mod3), countryDeaths)
+  
+  
+  
+  # cat("Summary of Linear Regression Model for the case - Deaths v/s Time")
+  # summary(mod3)
+  # 
+  # matrix_coef <- summary(mod3)$coefficients  # Extract coefficients in matrix
+  # matrix_coef 
+  # 
+  # my_estimates <- matrix_coef[ , 1]                     # Matrix manipulation to extract estimates
+  # my_estimates
+  
+  png(file = paste(subDirectory,"_Deaths_Days_PP.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
+  plot(days, countryDeaths, type="l", lwd=3.0, main=paste("Deaths v/s Days in", "USA", sep=" "), xlab = "Days", ylab = "Total Deaths")
+  
+  abline(mod3, col=2, lwd = 3)
+  dev.off()
+  
+  
+  # Total Vacc v/s Total Cases
+  
+  mod7 <- lm(countryVaccinations ~ countryCases)
+  
+  # error analysis
+  print("Error Analysis for totVax vs total cases - IND")
+  library(zoo)
+  library(hydroGOF)
+  
+  length(predict(mod7))
+  
+  gof(predict(mod7), countryVaccinations[300:922])
+  
+  png(file = paste(subDirectory,"_TotalVax_TotalCases.png", sep=""), width = 1080, height = 1080, units = "px", pointsize = 24)
+  plot(countryCases, countryVaccinations, type="l", lwd=3.0, main=paste("Total Vaccinations v/s Total Cases in", "USA", sep=" "), xlab = "Total Cases", ylab = "Total Vaccinations")
+  
+  abline(mod7, col=2, lwd = 3)
+  dev.off()
+  

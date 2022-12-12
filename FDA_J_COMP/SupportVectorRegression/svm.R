@@ -4,8 +4,8 @@ library(hydroGOF)
 library(e1071)
 
 countries = list("AUS", "CUB", "IND", "FRA", "ZAF", "USA")
-csv_dir = "/home/rajat/Rajat/VIT/5thSem_Fall22-23/CSE3505-FDA/archive/countries/"
-plt_dir = "/home/rajat/Rajat/VIT/5thSem_Fall22-23/CSE3505-FDA/archive/SupportVectorRegression/plots/"
+csv_dir = "D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code/FDA_J_COMP/countries/"
+plt_dir = "./SupportVectorRegression/plots_post-processing/"
 
 for (ct in countries) {
     print(ct)

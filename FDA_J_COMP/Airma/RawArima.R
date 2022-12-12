@@ -6,8 +6,8 @@ library(forecast)
 countryCodes = list("AUS", "CUB", "IND", "FRA", "ZAF", "USA")
 
 for(countryCode in countryCodes){
-  subDir <- paste("D:/VIT/SEM5/CSE3505 FDA/jComponent/Airma/plots/", countryCode)
-  path <- paste("D:/VIT/SEM5/CSE3505 FDA/jComponent/countries/", countryCode, ".csv", sep = "")
+  subDir <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code - github/FDA_J_COMP/Airma/plots/", countryCode)
+  path <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code - github/FDA_J_COMP/countries/", countryCode, ".csv", sep = "")
   
   df = read.csv(path,stringsAsFactors = T)
   

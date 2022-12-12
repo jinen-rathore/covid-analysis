@@ -6,7 +6,7 @@ countris <- c("IND","CUB","IDN","IRQ","POL","UKR")
 for ( nam in countris)
 { 
   par(mar=c(1,1,1,1))
-  filename <- paste("/Users/vinaymoolya/Desktop/semester5/FDA/Jcomp/FDA_J_COMP/countries/",nam,".csv",sep="");
+  filename <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code - github/FDA_J_COMP/countries/",nam,".csv",sep="");
   dataset <- read.csv(filename, stringsAsFactors = T)
   dataset <- as.data.frame(dataset)
   
@@ -24,7 +24,7 @@ for ( nam in countris)
   
   print(mod)
   
-  ofile1 <- paste("/Users/vinaymoolya/Desktop/semester5/FDA/Jcomp/FDA_J_COMP/visualization/multiple_reg/Cases/",nam,".jpeg",sep="")
+  ofile1 <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code - github/FDA_J_COMP/MultipleRegression/multiple_reg/Cases/",nam,".jpeg",sep="")
   jpeg(file = ofile1 ,width=600,height=400)
   avPlots(mod)
   dev.off()
@@ -35,7 +35,7 @@ for ( nam in countris)
   
   print(mod)
   
-  ofile2 <- paste("/Users/vinaymoolya/Desktop/semester5/FDA/Jcomp/FDA_J_COMP/visualization/multiple_reg/Deaths/",nam,".jpeg",sep="")
+  ofile2 <- paste("D:/My_Stuff/VIT-20BCE1789/Sem 5/Materials/FDA/Project/Code - github/FDA_J_COMP/MultipleRegression/multiple_reg/Deaths/",nam,".jpeg",sep="")
   jpeg(file = ofile2 ,width=600,height=400)
   
   avPlots(mod)
