@@ -16,7 +16,6 @@ for ( nam in countris)
   countryTests <- dataset$total_tests
   countryDeaths <- dataset$total_deaths
   #clean the total_cases collumn
-  
   for (i in 25:(length(countryCases) - 25)) {
     if (is.na(countryCases[i])) {
       val = (mean(na.omit(countryCases[(i-25):(i-1)])) + mean(na.omit(countryCases[(i+1):(i+25)]))) / 2
@@ -25,7 +24,6 @@ for ( nam in countris)
   }
   
   #clean the total_deaths collumn
-  
   for (i in 1:25) {
     if (is.na(countryDeaths[i])) countryDeaths[i] = 0
   }
@@ -37,7 +35,6 @@ for ( nam in countris)
   }
   
   #clean the total_tests_ collumn
-  
   for (i in 1:25) {
     if (is.na(countryTests[i])) countryTests[i] = 0
   }
@@ -49,10 +46,10 @@ for ( nam in countris)
   }
   
   #clean the total vaccinations collumn
-  
+
   for (i in 1:25) {
     if (is.na(countryVaccinations[i])) 
-    {
+      {
       countryVaccinations[i] = 0
     }
   }
