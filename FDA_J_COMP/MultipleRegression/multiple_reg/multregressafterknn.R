@@ -72,14 +72,10 @@ for ( nam in countris)
   mod <- lm(total_cases ~ total_tests + total_vaccinations , data = dataset)
   print(mod)
   dataset<-mutate(dataset, pred_cases = mod$coefficients[1]+total_tests*mod$coefficients[2]+total_vaccinations*mod$coefficients[3])
-  #cat("COeff-1 ->",mod$coefficients[1],"\n");
-  #cat("COeff-2 ->",mod$coefficients[2],"\n");
-  #cat("COeff-3 ->",mod$coefficients[3],"\n");
-  #print(dataset$pred_cases)
   cat("RMSE :: ",rmse(dataset$pred_cases,dataset$total_cases,na.rm=T),"\n")
   cat("MSE :: ",mse(dataset$pred_cases,dataset$total_cases,na.rm = T),"\n")
   cat("MAE :: ",mae(dataset$pred_cases,dataset$total_cases,na.rm=T),"\n")
-  # cat("R^2 :: ",R2(dataset$pred_cases,dataset$total_cases ,na.rm=T),"\n")
+  cat("R^2 :: ",R2(dataset$pred_cases,dataset$total_cases ,na.rm=T),"\n")
   ofile1 <- paste("/Users/vinaymoolya/Desktop/semester5/FDA/Jcomp/FDA_J_COMP/visualization/multiple_reg_paper/Cases/",nam,".jpeg",sep="")
   jpeg(file = ofile1 ,width=600,height=400)
   avPlots(mod)
